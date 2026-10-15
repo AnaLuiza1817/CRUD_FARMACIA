@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS saep_farmacia;
+CREATE DATABASE saep_farmacia;
 USE saep_farmacia;
 
 CREATE TABLE funcionario (
