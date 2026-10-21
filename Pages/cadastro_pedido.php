@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
              VALUES (?, ?, ?, ?, ?, 'solicitado')"
         );
         $comando->execute([$funcionario_id, $medicamento, $quantidade, $categoria, $urgencia]);
-        $mensagem = "cadastro concluído com sucesso";
+        $mensagem = "Pedido cadastrado com sucesso!";
     }
 }
 ?>
@@ -31,12 +31,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <link rel="stylesheet" href="../CSS/style.css">
 </head>
 <body>
-<h1>Cadastro de Pedido</h1>
-<?php if ($mensagem): ?><p class="mensagem"><?= htmlspecialchars($mensagem) ?></p><?php endif; ?>
-<form method="post">
-    <label>Medicamento: <input type="text" name="medicamento" required></label>
-    <label>Quantidade: <input type="number" name="quantidade" min="1" required></label>
-    <label>Categoria:
+<div class="container-formulario">
+    <h1>Cadastro de Pedido</h1>
+    
+    <?php if ($mensagem): ?>
+        <p class="mensagem"><?= htmlspecialchars($mensagem) ?></p>
+    <?php endif; ?>
+    
+    <form method="post">
+        <label>Medicamento:</label>
+        <input type="text" name="medicamento" required>
+        
+        <label>Quantidade:</label>
+        <input type="number" name="quantidade" min="1" required>
+        
+        <label>Categoria:</label>
         <select name="categoria" required>
             <option value="">-- Selecione --</option>
             <option>genérico</option>
@@ -44,25 +53,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <option>controlado</option>
             <option>higiene</option>
         </select>
-    </label>
-    <label>Urgência:
+        
+        <label>Urgência:</label>
         <select name="urgencia" required>
             <option value="">-- Selecione --</option>
             <option>baixa</option>
             <option>média</option>
             <option>alta</option>
         </select>
-    </label>
-    <label>Funcionário:
+        
+        <label>Funcionário:</label>
         <select name="funcionario_id" required>
             <option value="">-- Selecione --</option>
             <?php foreach ($funcionarios as $f): ?>
                 <option value="<?= $f['id'] ?>"><?= htmlspecialchars($f['nome']) ?></option>
             <?php endforeach; ?>
         </select>
-    </label>
-    <button type="submit">Salvar</button>
-</form>
-<a href="../index.php">← Voltar ao painel</a>
+        
+        <button type="submit">Salvar Pedido</button>
+    </form>
+    
+    <a href="../index.php" class="botao voltar">← Voltar ao painel</a>
+</div>
 </body>
 </html>

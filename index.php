@@ -23,8 +23,8 @@ foreach ($pedidos as $p) {
 <header>
     <h1>Painel de Reposição</h1>
     <nav>
-        <a href="JS/cadastro_funcionario.php">+ Funcionário</a>
-        <a href="JS/cadastro_pedido.php">+ Pedido</a>
+        <a href="Pages/cadastro_funcionario.php">+ Funcionário</a>
+        <a href="Pages/cadastro_pedido.php">+ Pedido</a>
     </nav>
 </header>
 
@@ -40,7 +40,7 @@ foreach ($pedidos as $p) {
                 <p>Urgência: <?= htmlspecialchars($p['urgencia']) ?></p>
                 <p>Funcionário: <?= htmlspecialchars($p['funcionario']) ?></p>
 
-                <form action="Public/atualizar.php" method="post" class="linha">
+                <form action="Actions/atualizar.php" method="post" class="linha">
                     <input type="hidden" name="id" value="<?= $p['id'] ?>">
                     <select name="status">
                         <option <?= $p['status']=='solicitado'?'selected':'' ?>>solicitado</option>
@@ -50,8 +50,8 @@ foreach ($pedidos as $p) {
                     <button type="submit">Atualizar</button>
                 </form>
 
-                <a class="botao" href="Public/editar.php?id=<?= $p['id'] ?>">Editar</a>
-                <a class="botao excluir" href="Public/excluir.php?id=<?= $p['id'] ?>"
+                <a class="botao" href="Actions/editar.php?id=<?= $p['id'] ?>">Editar</a>
+                <a class="botao excluir" href="Actions/excluir.php?id=<?= $p['id'] ?>"
                    onclick="return confirm('Confirma exclusão?')">Excluir</a>
             </div>
         <?php endforeach; ?>

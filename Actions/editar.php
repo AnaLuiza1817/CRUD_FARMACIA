@@ -29,43 +29,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
-<head><meta charset="UTF-8"><title>Editar Pedido</title>
-<link rel="stylesheet" href="../CSS/style.css"></head>
+<head>
+<meta charset="UTF-8">
+<title>Editar Pedido</title>
+<link rel="stylesheet" href="../CSS/style.css">
+</head>
 <body>
-<h1>Editar Pedido</h1>
-<form method="post">
-    <label>Medicamento:
-        <input type="text" name="medicamento"
-               value="<?= htmlspecialchars($pedido['medicamento']) ?>" required></label>
-    <label>Quantidade:
-        <input type="number" name="quantidade" min="1"
-               value="<?= $pedido['quantidade'] ?>" required></label>
-    <label>Categoria:
+<div class="container-formulario">
+    <h1>Editar Pedido</h1>
+    
+    <form method="post">
+        <label>Medicamento:</label>
+        <input type="text" name="medicamento" value="<?= htmlspecialchars($pedido['medicamento']) ?>" required>
+        
+        <label>Quantidade:</label>
+        <input type="number" name="quantidade" min="1" value="<?= $pedido['quantidade'] ?>" required>
+        
+        <label>Categoria:</label>
         <select name="categoria" required>
             <?php foreach (['genérico','referência','controlado','higiene'] as $c): ?>
                 <option <?= $pedido['categoria']==$c?'selected':'' ?>><?= $c ?></option>
             <?php endforeach; ?>
         </select>
-    </label>
-    <label>Urgência:
+        
+        <label>Urgência:</label>
         <select name="urgencia" required>
             <?php foreach (['baixa','média','alta'] as $u): ?>
                 <option <?= $pedido['urgencia']==$u?'selected':'' ?>><?= $u ?></option>
             <?php endforeach; ?>
         </select>
-    </label>
-    <label>Funcionário:
+        
+        <label>Funcionário:</label>
         <select name="funcionario_id" required>
             <?php foreach ($funcionarios as $f): ?>
-                <option value="<?= $f['id'] ?>"
-                    <?= $pedido['funcionario_id']==$f['id']?'selected':'' ?>>
+                <option value="<?= $f['id'] ?>" <?= $pedido['funcionario_id']==$f['id']?'selected':'' ?>>
                     <?= htmlspecialchars($f['nome']) ?>
                 </option>
             <?php endforeach; ?>
         </select>
-    </label>
-    <button type="submit">Salvar alterações</button>
-</form>
-<a href="../index.php">← Voltar</a>
+        
+        <button type="submit">Salvar Alterações</button>
+    </form>
+    
+    <a href="../index.php" class="botao voltar">← Voltar ao painel</a>
+</div>
 </body>
 </html>
